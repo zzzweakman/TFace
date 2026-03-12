@@ -8,6 +8,24 @@ from scipy import interpolate
 import torch
 import torchvision.transforms as transforms
 
+try:
+    from tqdm import tqdm
+except ImportError:
+    tqdm = None
+
+
+def _iter_batch_starts(total_size, batch_size, desc):
+    starts = range(0, total_size, batch_size)
+    total_batches = (total_size + batch_size - 1) // batch_size
+    if tqdm is None:
+        def _fallback_generator():
+            for batch_idx, start_idx in enumerate(starts, start=1):
+                if batch_idx == 1 or batch_idx % 10 == 0 or batch_idx == total_batches:
+                    print("{}: {}/{} batches".format(desc, batch_idx, total_batches))
+                yield start_idx
+        return _fallback_generator()
+    return tqdm(starts, total=total_batches, desc=desc, unit="batch", leave=True)
+
 
 def get_val_pair_from_bin(path, name):
     """ read data for bin files
@@ -28,8 +46,9 @@ def get_val_pair_from_bin(path, name):
         img = img.astype(np.float32)
         img = (img / 255. - 0.5) / 0.5
         images.append(img)
+    images = np.asarray(images, dtype=np.float32)
     issame_list = np.array(issame_list)
-    print(len(images))
+    print("Loaded {} with {} images".format(name, len(images)))
     return images, issame_list
 
 
@@ -241,36 +260,29 @@ def perform_val(embedding_size,
                 carray,
                 issame,
                 nrof_folds=10,
-                tta=True):
+                tta=True,
+                progress_desc=None):
     """ Perform accuracy and threshold with the carray is read from bcolz dir.
         When tta is set True, each test sample should be fliped, then the embedding
         is fused by the original one and the fliped one.
     """
     backbone.eval()
-    idx = 0
     embeddings = np.zeros([len(carray), embedding_size])
+    if progress_desc is None:
+        progress_desc = "Validation"
     with torch.no_grad():
-        while idx + batch_size <= len(carray):
-            batch = torch.tensor(carray[idx:idx + batch_size][:, [2, 1, 0], :, :])
+        for start_idx in _iter_batch_starts(len(carray), batch_size, progress_desc):
+            end_idx = min(start_idx + batch_size, len(carray))
+            batch_np = np.asarray(carray[start_idx:end_idx][:, [2, 1, 0], :, :], dtype=np.float32)
+            batch = torch.from_numpy(batch_np)
             if tta:
                 ccropped = ccrop_batch(batch)
                 fliped = hflip_batch(ccropped)
                 emb_batch = backbone(ccropped.cuda()).cpu() + backbone(fliped.cuda()).cpu()
-                embeddings[idx:idx + batch_size] = l2_norm(emb_batch)
+                embeddings[start_idx:end_idx] = l2_norm(emb_batch)
             else:
                 ccropped = ccrop_batch(batch)
-                embeddings[idx:idx + batch_size] = l2_norm(backbone(ccropped.cuda())).cpu()
-            idx += batch_size
-        if idx < len(carray):
-            batch = torch.tensor(carray[idx:][:, [2, 1, 0], :, :])
-            if tta:
-                ccropped = ccrop_batch(batch)
-                fliped = hflip_batch(ccropped)
-                emb_batch = backbone(ccropped.cuda()).cpu() + backbone(fliped.cuda()).cpu()
-                embeddings[idx:] = l2_norm(emb_batch)
-            else:
-                ccropped = ccrop_batch(batch)
-                embeddings[idx:] = l2_norm(backbone(ccropped.cuda())).cpu()
+                embeddings[start_idx:end_idx] = l2_norm(backbone(ccropped.cuda())).cpu()
 
     tpr, fpr, accuracy, best_thresholds, bad_case = evaluate(embeddings, issame, nrof_folds)
     return accuracy.mean(), best_thresholds.mean()
@@ -282,36 +294,29 @@ def perform_val_bin(embedding_size,
                     carray,
                     issame,
                     nrof_folds=10,
-                    tta=True):
+                    tta=True,
+                    progress_desc=None):
     """ Perform accuracy and threshold with the carray is read from bin.
         When tta is set True, each test sample should be fliped, then the embedding
         is fused by the original one and the fliped one.
     """
     backbone.eval()
-    idx = 0
     embeddings = np.zeros([len(carray), embedding_size])
+    if progress_desc is None:
+        progress_desc = "Validation(bin)"
     with torch.no_grad():
-        while idx + batch_size <= len(carray):
-            batch = torch.tensor(carray[idx:idx + batch_size])
+        for start_idx in _iter_batch_starts(len(carray), batch_size, progress_desc):
+            end_idx = min(start_idx + batch_size, len(carray))
+            batch_np = np.asarray(carray[start_idx:end_idx], dtype=np.float32)
+            batch = torch.from_numpy(batch_np)
             if tta:
                 ccropped = batch
                 fliped = torch.flip(ccropped, dims=[3])
                 emb_batch = backbone(ccropped.cuda()).cpu() + backbone(fliped.cuda()).cpu()
-                embeddings[idx:idx + batch_size] = l2_norm(emb_batch)
+                embeddings[start_idx:end_idx] = l2_norm(emb_batch)
             else:
                 ccropped = batch
-                embeddings[idx:idx + batch_size] = l2_norm(backbone(ccropped.cuda())).cpu()
-            idx += batch_size
-        if idx < len(carray):
-            batch = torch.tensor(carray[idx:])
-            if tta:
-                ccropped = batch
-                fliped = torch.flip(ccropped, dims=[3])
-                emb_batch = backbone(ccropped.cuda()).cpu() + backbone(fliped.cuda()).cpu()
-                embeddings[idx:] = l2_norm(emb_batch)
-            else:
-                ccropped = batch
-                embeddings[idx:] = l2_norm(backbone(ccropped.cuda())).cpu()
+                embeddings[start_idx:end_idx] = l2_norm(backbone(ccropped.cuda())).cpu()
 
     tpr, fpr, accuracy, best_thresholds, bad_case = evaluate(embeddings, issame, nrof_folds)
     return accuracy.mean(), best_thresholds.mean()

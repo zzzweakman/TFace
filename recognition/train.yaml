@@ -1,9 +1,11 @@
 SEED: 1337 # random seed for reproduce results
-DATA_ROOT: '/youtu-face/ata_root/remote_tfrecord' # the parent root where your train/val/test data are stored
-INDEX_ROOT: '/youtu-face/train_data/'
+DATA_ROOT: '/nfs/zzzhong/codes/exp/TFace/dataset' # parent directory of images folder
+INDEX_ROOT: '/nfs/zzzhong/codes/exp/TFace/dataset' # parent directory of image list files
+DATASET_MODE: 'image_list' # options: auto/image_list
+IMAGE_EXTENSIONS: ['.jpg', '.jpeg', '.png']
 DATASETS:  # the dataset index name
-    - name: TFR-deepglint_360k_new
-      batch_size: 128
+    - name: CASIA_namelist
+      batch_size: 2560
       weight: 1.0
       scale: 64
       margin: 0.4
@@ -21,7 +23,7 @@ MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
 LOG_ROOT: './tensorboard' # the root to log your train/val status
 
 DIST_FC: true
-HEAD_NAME: "PartialFC" # support:  ['ArcFace', 'CurricularFace', 'CosFace']
+HEAD_NAME: "ArcFace" # support:  ['ArcFace', 'CurricularFace', 'CosFace', 'PartialFC']
 LOSS_NAME: 'DistCrossEntropy' # support: ['DistCrossEntropy', 'Softmax']
 
 RGB_MEAN: [0.5, 0.5, 0.5] # for normalize inputs to [-1, 1]
@@ -44,6 +46,6 @@ LOCAL_RANK: 0
 DIST_BACKEND: 'nccl'
 DIST_URL: 'env://'
 
-NUM_WORKERS: 8
+NUM_WORKERS: 32
 
 AMP: true # fp16 for backbone

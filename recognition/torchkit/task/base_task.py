@@ -17,7 +17,8 @@ from ..util import load_config, get_class_split
 from ..util import separate_resnet_bn_paras
 from ..util import AllGather
 from ..util import CkptLoader, CkptSaver
-from ..data import MultiDataset, MultiDistributedSampler
+from ..data import MultiDataset, MultiImageListDataset
+from ..data import MultiDistributedSampler, ImageListDistributedSampler
 
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(asctime)s: %(message)s')
@@ -150,11 +151,31 @@ class BaseTask(object):
         ])
 
         ds_names = list(self.branches.keys())
-        ds = MultiDataset(self.cfg['DATA_ROOT'], self.cfg['INDEX_ROOT'], ds_names, transform)
+        dataset_mode = self.cfg.get("DATASET_MODE", "auto").lower()
+        if dataset_mode == "image_list":
+            ds = MultiImageListDataset(
+                self.cfg['DATA_ROOT'],
+                self.cfg['INDEX_ROOT'],
+                ds_names,
+                transform,
+                extensions=self.cfg.get('IMAGE_EXTENSIONS', ['.jpg', '.jpeg', '.png']),
+            )
+        else:
+            data_type = self.cfg.get("DATA_TYPE", "auto").lower()
+            ds = MultiDataset(
+                self.cfg['DATA_ROOT'],
+                self.cfg['INDEX_ROOT'],
+                ds_names,
+                transform,
+                data_type=data_type,
+            )
         ds.make_dataset(shard=True)
         self.class_nums = ds.class_nums
 
-        sampler = MultiDistributedSampler(ds, self.batch_sizes)
+        if dataset_mode == "image_list":
+            sampler = ImageListDistributedSampler(ds, self.batch_sizes)
+        else:
+            sampler = MultiDistributedSampler(ds, self.batch_sizes)
         self.train_loader = DataLoader(ds, sum(self.batch_sizes), shuffle=False,
                                        num_workers=self.cfg["NUM_WORKERS"], pin_memory=True,
                                        sampler=sampler, drop_last=False)

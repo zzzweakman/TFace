@@ -3,7 +3,7 @@ import math
 import torch
 import torch.distributed as dist
 from torch.utils.data.sampler import Sampler
-from .dataset import MultiDataset
+from .dataset import MultiDataset, MultiImageListDataset
 
 
 class MultiDistributedSampler(Sampler):
@@ -106,3 +106,12 @@ class MultiDistributedSampler(Sampler):
 
     def __len__(self):
         return self.max_batch_num * sum(self.batch_sizes.values())
+
+
+class ImageListDistributedSampler(MultiDistributedSampler):
+    """Distributed sampler for MultiImageListDataset."""
+
+    def __init__(self, dataset, batch_sizes, init_seed=0) -> None:
+        if not isinstance(dataset, MultiImageListDataset):
+            raise RuntimeError("Dataset should be a MultiImageListDataset object")
+        super().__init__(dataset, batch_sizes, init_seed=init_seed)

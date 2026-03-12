@@ -5,6 +5,22 @@ from torch.utils.data import Dataset
 from .parser import IndexParser, ImgSampleParser, TFRecordSampleParser
 
 
+def build_sample_parser(transform, data_type, data_name):
+    """Create sample parser based on configured data type."""
+    if data_type not in ('auto', 'image', 'tfrecord'):
+        raise RuntimeError("Unsupported data_type {}, expected auto/image/tfrecord".format(data_type))
+
+    if data_type == 'image':
+        return ImgSampleParser(transform)
+    if data_type == 'tfrecord':
+        return TFRecordSampleParser(transform)
+
+    # Backward-compatible behavior.
+    if 'TFR' in data_name:
+        return TFRecordSampleParser(transform)
+    return ImgSampleParser(transform)
+
+
 class SingleDataset(Dataset):
     """ SingleDataset
     """
@@ -23,10 +39,8 @@ class SingleDataset(Dataset):
         self.index_root = index_root
         self.name = name
         self.index_parser = IndexParser()
-        if 'TFR' not in name and 'TFR' not in kwargs:
-            self.sample_parser = ImgSampleParser(transform)
-        else:
-            self.sample_parser = TFRecordSampleParser(transform)
+        data_type = kwargs.get('data_type', 'auto')
+        self.sample_parser = build_sample_parser(transform, data_type, name)
 
         self.inputs = []
         self.is_shard = False
@@ -43,6 +57,8 @@ class SingleDataset(Dataset):
         index_path = os.path.join(self.index_root, self.name + '.txt')
         with open(index_path, 'r') as f:
             for line in f:
+                if not line.strip():
+                    continue
                 sample = self.index_parser(line)
                 self.inputs.append(sample)
         self.class_num = self.index_parser.class_num + 1
@@ -82,10 +98,8 @@ class MultiDataset(Dataset):
         self.index_root = index_root
         self.names = names
         self.index_parser = IndexParser()
-        if 'TFR' not in names[0] and 'TFR' not in kwargs:
-            self.sample_parser = ImgSampleParser(transform)
-        else:
-            self.sample_parser = TFRecordSampleParser(transform)
+        data_type = kwargs.get('data_type', 'auto')
+        self.sample_parser = build_sample_parser(transform, data_type, names[0])
 
         self.inputs = dict()
         self.is_shard = False
@@ -130,6 +144,8 @@ class MultiDataset(Dataset):
             self.inputs[name] = []
             with open(index_file, 'r') as f:
                 for line_i, line in enumerate(f):
+                    if not line.strip():
+                        continue
                     sample = self.index_parser(line)
                     if self.is_shard is False:
                         self.inputs[name].append(sample)
@@ -161,3 +177,50 @@ class MultiDataset(Dataset):
             sample[0] = os.path.join(self.data_root, sample[0])  # data_root join
             image, label = self.sample_parser(*sample)
         return image, label
+
+
+class MultiImageListDataset(MultiDataset):
+    """Multi dataset for image list files with jpg/png filtering."""
+
+    def __init__(self, data_root, index_root, names, transform, extensions=None, **kwargs) -> None:
+        kwargs['data_type'] = 'image'
+        super().__init__(data_root, index_root, names, transform, **kwargs)
+        if extensions is None:
+            extensions = ('.jpg', '.jpeg', '.png')
+        self.extensions = tuple(ext.lower() for ext in extensions)
+
+    def _is_valid_image_path(self, path):
+        return path.lower().endswith(self.extensions)
+
+    def _build_inputs(self, world_size=None, rank=None):
+        for name in self.names:
+            index_file = os.path.join(self.index_root, name + ".txt")
+            self.index_parser.reset()
+            self.inputs[name] = []
+            valid_line_index = 0
+            with open(index_file, 'r') as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    sample = self.index_parser(line)
+                    if not self._is_valid_image_path(sample[0]):
+                        continue
+                    if self.is_shard is False:
+                        self.inputs[name].append(sample)
+                    else:
+                        if valid_line_index % world_size == rank:
+                            self.inputs[name].append(sample)
+                    valid_line_index += 1
+
+            self.class_nums[name] = self.index_parser.class_num + 1
+            self.sample_nums[name] = len(self.inputs[name])
+            if self.sample_nums[name] == 0:
+                raise RuntimeError("Dataset {} has no valid image sample".format(name))
+
+            if self.is_shard:
+                self.total_sample_nums[name] = valid_line_index
+                logging.info("Dataset %s, class_num %d, total_sample_num %d, sample_num %d" % (
+                    name, self.class_nums[name], self.total_sample_nums[name], self.sample_nums[name]))
+            else:
+                logging.info("Dataset %s, class_num %d, sample_num %d" % (
+                    name, self.class_nums[name], self.sample_nums[name]))

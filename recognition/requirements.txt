@@ -1,1 +1,3 @@
 dareblopy
+opencv-python
+protobuf

@@ -8,3 +8,5 @@ logs/
 rpf.yaml
 *.bak
 build/
+dataset/
+/recognition/ckpt/
