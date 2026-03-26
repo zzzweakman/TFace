@@ -188,7 +188,8 @@ class BaseTask(object):
         """
         backbone_name = self.cfg['BACKBONE_NAME']
         backbone_model = get_model(backbone_name)
-        self.backbone = backbone_model(self.input_size)
+        input_channels = self.cfg.get('INPUT_CHANNELS', 3)
+        self.backbone = backbone_model(self.input_size, input_channel=input_channels)
         self.backbone.cuda()
         logging.info("{} Backbone Generated".format(backbone_name))
 

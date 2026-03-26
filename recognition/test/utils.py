@@ -295,7 +295,8 @@ def perform_val_bin(embedding_size,
                     issame,
                     nrof_folds=10,
                     tta=True,
-                    progress_desc=None):
+                    progress_desc=None,
+                    preprocess_fn=None):
     """ Perform accuracy and threshold with the carray is read from bin.
         When tta is set True, each test sample should be fliped, then the embedding
         is fused by the original one and the fliped one.
@@ -312,11 +313,19 @@ def perform_val_bin(embedding_size,
             if tta:
                 ccropped = batch
                 fliped = torch.flip(ccropped, dims=[3])
-                emb_batch = backbone(ccropped.cuda()).cpu() + backbone(fliped.cuda()).cpu()
+                ccropped = ccropped.cuda()
+                fliped = fliped.cuda()
+                if preprocess_fn is not None:
+                    ccropped = preprocess_fn(ccropped)
+                    fliped = preprocess_fn(fliped)
+                emb_batch = backbone(ccropped).cpu() + backbone(fliped).cpu()
                 embeddings[start_idx:end_idx] = l2_norm(emb_batch)
             else:
                 ccropped = batch
-                embeddings[start_idx:end_idx] = l2_norm(backbone(ccropped.cuda())).cpu()
+                ccropped = ccropped.cuda()
+                if preprocess_fn is not None:
+                    ccropped = preprocess_fn(ccropped)
+                embeddings[start_idx:end_idx] = l2_norm(backbone(ccropped)).cpu()
 
     tpr, fpr, accuracy, best_thresholds, bad_case = evaluate(embeddings, issame, nrof_folds)
     return accuracy.mean(), best_thresholds.mean()

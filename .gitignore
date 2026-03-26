@@ -10,3 +10,5 @@ rpf.yaml
 build/
 dataset/
 /recognition/ckpt/
+/recognition/indexes/MS1Mv2_namelist.txt
+/recognition/vis_output

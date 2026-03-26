@@ -3,6 +3,11 @@ import torch
 import torch.cuda.amp as amp
 from torch.nn.parallel import DistributedDataParallel
 
+from frequency_utils import (
+    DEFAULT_LOW_FREQ_CHANNELS,
+    expected_input_channels,
+    frequency_tensor_from_images,
+)
 from torchkit.util import AverageMeter, Timer
 from torchkit.util import accuracy_dist
 from torchkit.util import AllGather
@@ -30,6 +35,20 @@ class TrainTask(BaseTask):
             'prec@5': am_top5,
         }
         self.update_log_buffer(log)
+
+    def preprocess_inputs(self, inputs):
+        preprocess_mode = self.cfg.get('PREPROCESS_MODE', 'rgb')
+        if str(preprocess_mode).lower() == 'rgb':
+            return inputs
+        low_freq_channels = self.cfg.get('FREQ_LOW_CHANNELS', DEFAULT_LOW_FREQ_CHANNELS)
+        keep_channels = self.cfg.get('FREQ_KEEP_CHANNELS', None)
+        return frequency_tensor_from_images(
+            inputs,
+            mode=preprocess_mode,
+            keep_channels=keep_channels,
+            low_freq_channels=low_freq_channels,
+            ratio=self.cfg.get('DCT_SAMPLING_RATIO', 8),
+        )
         
     def loop_step(self, epoch):
         """
@@ -58,6 +77,7 @@ class TrainTask(BaseTask):
 
             inputs = samples[0].cuda(non_blocking=True)
             labels = samples[1].cuda(non_blocking=True)
+            inputs = self.preprocess_inputs(inputs)
 
             all_features, all_labels = self.backbone_forward(backbone, inputs, labels, batch_sizes)
 
@@ -106,6 +126,24 @@ class TrainTask(BaseTask):
     def prepare(self):
         """ common prepare task for training
         """
+        preprocess_mode = self.cfg.get('PREPROCESS_MODE', 'rgb')
+        low_freq_channels = self.cfg.get('FREQ_LOW_CHANNELS', DEFAULT_LOW_FREQ_CHANNELS)
+        keep_channels = self.cfg.get('FREQ_KEEP_CHANNELS', None)
+        expected_channels = expected_input_channels(
+            mode=preprocess_mode,
+            keep_channels=keep_channels,
+            low_freq_channels=low_freq_channels,
+        )
+        configured_channels = self.cfg.get('INPUT_CHANNELS', expected_channels)
+        if configured_channels != expected_channels:
+            raise RuntimeError(
+                "INPUT_CHANNELS={} does not match preprocess setting {}, expected {}".format(
+                    configured_channels,
+                    preprocess_mode,
+                    expected_channels,
+                )
+            )
+        self.cfg['INPUT_CHANNELS'] = configured_channels
         self.make_inputs()
         self.make_model()
         self.loss = get_loss('DistCrossEntropy').cuda()
@@ -143,7 +181,8 @@ class TrainTask(BaseTask):
 
 def main():
     task_dir = os.path.dirname(os.path.abspath(__file__))
-    task = TrainTask(os.path.join(task_dir, 'train.yaml'))
+    config_file = os.environ.get('TRAIN_CONFIG', os.path.join(task_dir, 'train.yaml'))
+    task = TrainTask(config_file)
     task.init_env()
     task.train()
 

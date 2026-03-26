@@ -1,0 +1,54 @@
+SEED: 1337
+DATA_ROOT: '/nfs/zzzhong/codes/exp/workspace_yc/dataset/MS1Mv2'
+INDEX_ROOT: '/nfs/zzzhong/codes/exp/TFace/recognition/indexes'
+DATASET_MODE: 'image_list'
+IMAGE_EXTENSIONS: ['.jpg', '.jpeg', '.png']
+DATASETS:
+    - name: MS1Mv2_namelist
+      batch_size: 128
+      weight: 1.0
+      scale: 64
+      margin: 0.4
+
+BACKBONE_RESUME: ""
+HEAD_RESUME: ""
+META_RESUME: ""
+
+INPUT_SIZE: [112, 112]
+BACKBONE_NAME: 'IR_50'
+INPUT_CHANNELS: 162
+PREPROCESS_MODE: 'high_freq'
+FREQ_LOW_CHANNELS: [0, 1, 2, 3, 4, 5, 8, 9, 16, 24]
+DCT_SAMPLING_RATIO: 8
+EMBEDDING_SIZE: 512
+
+MODEL_ROOT: './ckpt/'
+LOG_ROOT: './tensorboard'
+
+DIST_FC: true
+HEAD_NAME: "ArcFace"
+LOSS_NAME: 'DistCrossEntropy'
+
+RGB_MEAN: [0.5, 0.5, 0.5]
+RGB_STD: [0.5, 0.5, 0.5]
+
+LRS: [0.1, 0.01, 0.001, 0.0001, 0.00001]
+WARMUP_STEP: -1
+STAGES: [8, 12, 15, 18]
+
+START_EPOCH: 0
+NUM_EPOCH: 20
+SAVE_EPOCHS: [1, 15, 18, 20]
+
+WEIGHT_DECAY: 0.0005
+MOMENTUM: 0.9
+
+WORLD_SIZE: 1
+RANK: 0
+LOCAL_RANK: 0
+DIST_BACKEND: 'nccl'
+DIST_URL: 'env://'
+
+NUM_WORKERS: 32
+
+AMP: true

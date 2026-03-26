@@ -1,3 +1,6 @@
 dareblopy
+numpy
 opencv-python
 protobuf
+torchjpeg
+python -m pip install --no-deps torchjpeg
