@@ -5,22 +5,25 @@ DATASET_MODE: 'image_list' # options: auto/image_list
 IMAGE_EXTENSIONS: ['.jpg', '.jpeg', '.png']
 DATASETS:  # the dataset index name
     - name: CASIA_namelist
-      batch_size: 2560
+      batch_size: 128
       weight: 1.0
       scale: 64
       margin: 0.4
-  
+
 BACKBONE_RESUME: ""
 HEAD_RESUME: ""
 META_RESUME: ""
 
-# BACKBONE_NAME: 'EfficientNetB0'
 INPUT_SIZE: [112, 112] # support: [112, 112] and [224, 224]
 BACKBONE_NAME: 'IR_50'
+INPUT_CHANNELS: 162
+PREPROCESS_MODE: 'high_freq'
+FREQ_LOW_CHANNELS: [0, 1, 2, 3, 4, 5, 8, 9, 16, 24]
+DCT_SAMPLING_RATIO: 8
 EMBEDDING_SIZE: 512 # feature dimension
 
-MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
-LOG_ROOT: './tensorboard' # the root to log your train/val status
+MODEL_ROOT: 'logs/channel_selection/full_highfreq_50ep/ckpt/' # the root to buffer your checkpoints
+LOG_ROOT: 'logs/channel_selection/full_highfreq_50ep/tensorboard' # the root to log your train/val status
 
 DIST_FC: true
 HEAD_NAME: "ArcFace" # support:  ['ArcFace', 'CurricularFace', 'CosFace', 'PartialFC']
@@ -31,11 +34,11 @@ RGB_STD: [0.5, 0.5, 0.5]
 
 LRS: [0.1, 0.01, 0.001, 0.0001, 0.00001] # initial LR
 WARMUP_STEP: -1
-STAGES: [8, 12, 15, 18] # epoch stages to decay learning rate
+STAGES: [20, 32, 42, 48] # epoch stages to decay learning rate for 50 epochs
 
 START_EPOCH: 0 # start epoch
-NUM_EPOCH: 20 # total epoch number
-SAVE_EPOCHS: [1, 15, 18, 20]
+NUM_EPOCH: 50 # total epoch number
+SAVE_EPOCHS: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 
 WEIGHT_DECAY: 0.0005 # do not apply to batch_norm parameters
 MOMENTUM: 0.9

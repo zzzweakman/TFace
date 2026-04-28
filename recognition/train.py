@@ -8,6 +8,7 @@ from frequency_utils import (
     expected_input_channels,
     frequency_tensor_from_images,
 )
+from torchkit.backbone.channel_gate import FrequencyChannelGate
 from torchkit.util import AverageMeter, Timer
 from torchkit.util import accuracy_dist
 from torchkit.util import AllGather
@@ -35,6 +36,31 @@ class TrainTask(BaseTask):
             'prec@5': am_top5,
         }
         self.update_log_buffer(log)
+
+    def maybe_add_channel_gate(self):
+        if not self.cfg.get('FREQ_CHANNEL_GATE', False):
+            return
+        init_value = self.cfg.get('FREQ_CHANNEL_GATE_INIT', 0.9)
+        use_sigmoid = self.cfg.get('FREQ_CHANNEL_GATE_SIGMOID', True)
+        self.backbone = FrequencyChannelGate(
+            self.backbone,
+            num_channels=self.cfg['INPUT_CHANNELS'],
+            init_value=init_value,
+            use_sigmoid=use_sigmoid,
+        )
+
+    def get_channel_gate(self):
+        module = self.backbone.module if hasattr(self.backbone, 'module') else self.backbone
+        if isinstance(module, FrequencyChannelGate):
+            return module
+        return None
+
+    def channel_gate_regularization(self):
+        gate = self.get_channel_gate()
+        weight = self.cfg.get('FREQ_CHANNEL_GATE_L1_WEIGHT', 0.0)
+        if gate is None or weight <= 0:
+            return None
+        return gate.gate_l1() * weight
 
     def preprocess_inputs(self, inputs):
         preprocess_mode = self.cfg.get('PREPROCESS_MODE', 'rgb')
@@ -108,6 +134,10 @@ class TrainTask(BaseTask):
 
             # compute loss
             total_loss = sum(losses)
+            gate_reg = self.channel_gate_regularization()
+            if gate_reg is not None:
+                total_loss = total_loss + gate_reg
+                self.update_log_buffer({'gate_l1': gate_reg.detach().item()})
             # compute gradient and do SGD
             total_opts = [backbone_opt] + head_opts
             self.backward_and_update(total_loss, total_opts, self.scaler)
@@ -144,8 +174,11 @@ class TrainTask(BaseTask):
                 )
             )
         self.cfg['INPUT_CHANNELS'] = configured_channels
+        os.makedirs(self.cfg['MODEL_ROOT'], exist_ok=True)
         self.make_inputs()
         self.make_model()
+        self.maybe_add_channel_gate()
+        self.backbone.cuda()
         self.loss = get_loss('DistCrossEntropy').cuda()
         self.opt = self.get_optimizer()
         self.register_hooks()

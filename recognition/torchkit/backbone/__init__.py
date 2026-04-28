@@ -5,6 +5,7 @@ from .model_irse import IR_SE_50, IR_SE_101, IR_SE_152, IR_SE_200
 from .model_mobilefacenet import MobileFaceNet
 from .model_efficientnet import EfficientNetB0, EfficientNetB1
 from .model_ghostnet import GhostNet
+from .unet_reconstruction import UNetReconstruction
 from .fbnets.fbnet_builder import get_fbnet_model
 
 _model_dict = {
@@ -25,6 +26,7 @@ _model_dict = {
     'EfficientNetB0': EfficientNetB0,
     'EfficientNetB1': EfficientNetB1,
     'GhostNet': GhostNet,
+    'UNetReconstruction': UNetReconstruction,
     'fbnet_a': partial(get_fbnet_model, "fbnet_a"),
     'fbnet_b': partial(get_fbnet_model, "fbnet_b"),
     'fbnet_c': partial(get_fbnet_model, "fbnet_c"),

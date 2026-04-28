@@ -5,30 +5,31 @@ DATASET_MODE: 'image_list' # options: auto/image_list
 IMAGE_EXTENSIONS: ['.jpg', '.jpeg', '.png']
 DATASETS:  # the dataset index name
     - name: CASIA_namelist
-      batch_size: 2560
+      batch_size: 512
       weight: 1.0
       scale: 64
       margin: 0.4
-  
+
 BACKBONE_RESUME: ""
-HEAD_RESUME: ""
 META_RESUME: ""
 
-# BACKBONE_NAME: 'EfficientNetB0'
 INPUT_SIZE: [112, 112] # support: [112, 112] and [224, 224]
-BACKBONE_NAME: 'IR_50'
-EMBEDDING_SIZE: 512 # feature dimension
+MODEL_NAME: 'UNetReconstruction'
+INPUT_CHANNELS: 162
+OUTPUT_CHANNELS: 3
+UNET_BASE_CHANNELS: 76
+PREPROCESS_MODE: 'high_freq'
+FREQ_LOW_CHANNELS: [0, 1, 2, 3, 4, 5, 8, 9, 16, 24]
+DCT_SAMPLING_RATIO: 8
 
-MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
-LOG_ROOT: './tensorboard' # the root to log your train/val status
+RECON_LOSS: 'l1_mse'
+MSE_WEIGHT: 0.1
+PSNR_MAX_VALUE: 2.0
 
-DIST_FC: true
-HEAD_NAME: "ArcFace" # support:  ['ArcFace', 'CurricularFace', 'CosFace', 'PartialFC']
-LOSS_NAME: 'DistCrossEntropy' # support: ['DistCrossEntropy', 'Softmax']
+MODEL_ROOT: './ckpt_casia_highfreq_reconstruct/' # the root to buffer your checkpoints
+LOG_ROOT: './tensorboard_casia_highfreq_reconstruct' # the root to log your train/val status
 
-RGB_MEAN: [0.5, 0.5, 0.5] # for normalize inputs to [-1, 1]
-RGB_STD: [0.5, 0.5, 0.5]
-
+OPTIMIZER: 'SGD'
 LRS: [0.1, 0.01, 0.001, 0.0001, 0.00001] # initial LR
 WARMUP_STEP: -1
 STAGES: [8, 12, 15, 18] # epoch stages to decay learning rate
@@ -37,7 +38,7 @@ START_EPOCH: 0 # start epoch
 NUM_EPOCH: 20 # total epoch number
 SAVE_EPOCHS: [1, 15, 18, 20]
 
-WEIGHT_DECAY: 0.0005 # do not apply to batch_norm parameters
+WEIGHT_DECAY: 0.0005
 MOMENTUM: 0.9
 
 WORLD_SIZE: 1
@@ -48,4 +49,4 @@ DIST_URL: 'env://'
 
 NUM_WORKERS: 32
 
-AMP: true # fp16 for backbone
+AMP: true # fp16 for reconstruction model
