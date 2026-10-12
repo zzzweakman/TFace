@@ -1,0 +1,30 @@
+{
+  "ckpt_path": "ckpt_MS1Mv2_highfreq/Backbone_Epoch_20_checkpoint.pth",
+  "backbone": "IR_50",
+  "preprocess_mode": "high_freq",
+  "input_channels": 162,
+  "freq_channel_std": null,
+  "freq_channel_clip": null,
+  "metrics": {
+    "lfw": {
+      "acc": 0.9976666666666667,
+      "thresh": 1.3790000000000002
+    },
+    "cfp_fp": {
+      "acc": 0.9797142857142858,
+      "thresh": 1.621
+    },
+    "agedb_30": {
+      "acc": 0.9804999999999999,
+      "thresh": 1.517
+    },
+    "calfw": {
+      "acc": 0.9603333333333332,
+      "thresh": 1.473
+    },
+    "cplfw": {
+      "acc": 0.9209999999999999,
+      "thresh": 1.6010000000000002
+    }
+  }
+}

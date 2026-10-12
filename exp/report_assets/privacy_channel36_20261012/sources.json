@@ -1,0 +1,10 @@
+{
+  "reconstruction": "recognition/reconstruct_outputs/ms1mv2_sweep64_epoch20",
+  "recognition": {
+    "teacher": "logs/channel_selection/teacher_ms1mv2_highfreq_epoch20_verification_20260930.json",
+    "baseline": "logs/channel_selection/ms1mv2_channel36_distill_54_20ep/verification_recheck_20260930.json",
+    "landmark": "logs/channel_selection/ms1mv2_channel36_spatial_landmark_distill_54_20ep_run2/verification_check_20261010/results.json",
+    "deca": "logs/channel_selection/ms1mv2_channel36_deca236_distill_54_20ep_bs512_20261010/verification_recheck_20261012_063552/results.json"
+  },
+  "manifest_sha256": "9f11fabb91266171dab35cc456e2560d240665964ae646c8d8002375c84acb0a"
+}

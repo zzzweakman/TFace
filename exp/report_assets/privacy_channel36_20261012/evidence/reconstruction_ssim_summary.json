@@ -1,0 +1,969 @@
+{
+  "num_images": 1000,
+  "manifest_sha256": "9f11fabb91266171dab35cc456e2560d240665964ae646c8d8002375c84acb0a",
+  "ssim_protocol": "Mean per-image RGB SSIM; skimage.metrics.structural_similarity, channel_axis=-1, data_range=1.0, default 7x7 uniform window",
+  "pixels": "112x112 float32 RGB [0,1], reconstruction clipped, before PNG quantization",
+  "models": [
+    {
+      "channel": 0,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_00/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.00966627504438919,
+      "mean_psnr_db": 36.85168556103991,
+      "id_cosine": 0.994482955634594,
+      "ssim_rgb": {
+        "mean": 0.9817689117193222,
+        "std": 0.008707886015072526,
+        "median": 0.9834647178649902,
+        "p05": 0.965668722987175,
+        "p95": 0.9913120776414871
+      }
+    },
+    {
+      "channel": 1,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_01/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.04214917808078264,
+      "mean_psnr_db": 26.142869548289603,
+      "id_cosine": 0.8898018301725388,
+      "ssim_rgb": {
+        "mean": 0.9152106909751893,
+        "std": 0.031829075306664054,
+        "median": 0.9210999608039856,
+        "p05": 0.8666461884975434,
+        "p95": 0.9477878332138061
+      }
+    },
+    {
+      "channel": 2,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_02/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.05385036067493485,
+      "mean_psnr_db": 23.70077458154925,
+      "id_cosine": 0.8308401389122009,
+      "ssim_rgb": {
+        "mean": 0.8880212053954601,
+        "std": 0.0362263762793183,
+        "median": 0.8941189348697662,
+        "p05": 0.8308762937784195,
+        "p95": 0.9298291563987732
+      }
+    },
+    {
+      "channel": 3,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_03/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.042543722294344645,
+      "mean_psnr_db": 26.0285064904751,
+      "id_cosine": 0.8916060823202133,
+      "ssim_rgb": {
+        "mean": 0.9140983731746674,
+        "std": 0.031524354669517834,
+        "median": 0.9202820062637329,
+        "p05": 0.8651376843452454,
+        "p95": 0.9483031332492828
+      }
+    },
+    {
+      "channel": 4,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_04/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06309246570952744,
+      "mean_psnr_db": 22.07257434431569,
+      "id_cosine": 0.596315633058548,
+      "ssim_rgb": {
+        "mean": 0.8331680017709732,
+        "std": 0.0443052712648042,
+        "median": 0.83902308344841,
+        "p05": 0.7546068787574768,
+        "p95": 0.8916476845741272
+      }
+    },
+    {
+      "channel": 5,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_05/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.043463096392622885,
+      "mean_psnr_db": 25.816252187123702,
+      "id_cosine": 0.8814186951518059,
+      "ssim_rgb": {
+        "mean": 0.9070783101916313,
+        "std": 0.03296426267228742,
+        "median": 0.9142526686191559,
+        "p05": 0.8526034474372863,
+        "p95": 0.9421982288360595
+      }
+    },
+    {
+      "channel": 6,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_06/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06537700131222712,
+      "mean_psnr_db": 21.8402671377916,
+      "id_cosine": 0.7248831538259983,
+      "ssim_rgb": {
+        "mean": 0.8331478120386601,
+        "std": 0.0441988006663927,
+        "median": 0.8398318290710449,
+        "p05": 0.7580326050519943,
+        "p95": 0.8917196720838547
+      }
+    },
+    {
+      "channel": 7,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_07/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.046465576480492016,
+      "mean_psnr_db": 25.1788795518021,
+      "id_cosine": 0.8551953811049461,
+      "ssim_rgb": {
+        "mean": 0.8961680461764335,
+        "std": 0.03488051758631615,
+        "median": 0.9026657342910767,
+        "p05": 0.8360870212316514,
+        "p95": 0.933888104557991
+      }
+    },
+    {
+      "channel": 8,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_08/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.04633896767711789,
+      "mean_psnr_db": 25.083241269623773,
+      "id_cosine": 0.9273653398752213,
+      "ssim_rgb": {
+        "mean": 0.9021043927073479,
+        "std": 0.0303361003812421,
+        "median": 0.9083113372325897,
+        "p05": 0.8445423036813736,
+        "p95": 0.9383447349071503
+      }
+    },
+    {
+      "channel": 9,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_09/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06102759488961948,
+      "mean_psnr_db": 22.519943728526556,
+      "id_cosine": 0.8274418783187866,
+      "ssim_rgb": {
+        "mean": 0.8453749398589134,
+        "std": 0.041796284039539236,
+        "median": 0.8517802953720093,
+        "p05": 0.7699467808008194,
+        "p95": 0.8997326731681824
+      }
+    },
+    {
+      "channel": 10,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_10/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07152974811530606,
+      "mean_psnr_db": 20.949261990725645,
+      "id_cosine": 0.7510219588279724,
+      "ssim_rgb": {
+        "mean": 0.8128201151788235,
+        "std": 0.0454810396656192,
+        "median": 0.8180961608886719,
+        "p05": 0.7323973447084426,
+        "p95": 0.8718437641859055
+      }
+    },
+    {
+      "channel": 11,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_11/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.061421211308928775,
+      "mean_psnr_db": 22.489969314282156,
+      "id_cosine": 0.8198967300653458,
+      "ssim_rgb": {
+        "mean": 0.8458668696284294,
+        "std": 0.04138345886439353,
+        "median": 0.8522387444972992,
+        "p05": 0.7711447596549987,
+        "p95": 0.8988768994808197
+      }
+    },
+    {
+      "channel": 12,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_12/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07745596586904634,
+      "mean_psnr_db": 20.212732067188707,
+      "id_cosine": 0.54579767601192,
+      "ssim_rgb": {
+        "mean": 0.7692081950604915,
+        "std": 0.05333716152506563,
+        "median": 0.7747260332107544,
+        "p05": 0.6726264238357544,
+        "p95": 0.8426915735006333
+      }
+    },
+    {
+      "channel": 13,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_13/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.062145340206929106,
+      "mean_psnr_db": 22.343900369128367,
+      "id_cosine": 0.8063590592741966,
+      "ssim_rgb": {
+        "mean": 0.835611491382122,
+        "std": 0.04312234324490853,
+        "median": 0.8409307301044464,
+        "p05": 0.7567013829946518,
+        "p95": 0.8918321311473847
+      }
+    },
+    {
+      "channel": 14,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_14/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08018609382331746,
+      "mean_psnr_db": 19.880982095612126,
+      "id_cosine": 0.6443470369279385,
+      "ssim_rgb": {
+        "mean": 0.7624211371541023,
+        "std": 0.054618469359847564,
+        "median": 0.7675307989120483,
+        "p05": 0.668954786658287,
+        "p95": 0.8398765355348586
+      }
+    },
+    {
+      "channel": 15,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_15/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06528329542227213,
+      "mean_psnr_db": 21.93292305637934,
+      "id_cosine": 0.7785393252968789,
+      "ssim_rgb": {
+        "mean": 0.8235762984156608,
+        "std": 0.045907885620525085,
+        "median": 0.8305793404579163,
+        "p05": 0.7387822300195694,
+        "p95": 0.8824097037315368
+      }
+    },
+    {
+      "channel": 16,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_16/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.05928086837629715,
+      "mean_psnr_db": 22.659368938517797,
+      "id_cosine": 0.8824696487188339,
+      "ssim_rgb": {
+        "mean": 0.8727195873856545,
+        "std": 0.034686702241193815,
+        "median": 0.879329115152359,
+        "p05": 0.8105306029319763,
+        "p95": 0.9142967313528061
+      }
+    },
+    {
+      "channel": 17,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_17/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.0740365735946681,
+      "mean_psnr_db": 20.638597634796024,
+      "id_cosine": 0.7719911106228828,
+      "ssim_rgb": {
+        "mean": 0.809311036080122,
+        "std": 0.046902963071877773,
+        "median": 0.8154264688491821,
+        "p05": 0.7230937451124191,
+        "p95": 0.8695099830627442
+      }
+    },
+    {
+      "channel": 18,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_18/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.085661450744327,
+      "mean_psnr_db": 19.23219350245651,
+      "id_cosine": 0.6780518523454666,
+      "ssim_rgb": {
+        "mean": 0.7680269551873207,
+        "std": 0.05213300975331492,
+        "median": 0.7749060690402985,
+        "p05": 0.6720750659704209,
+        "p95": 0.8391652822494506
+      }
+    },
+    {
+      "channel": 19,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_19/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07333677745520907,
+      "mean_psnr_db": 20.7226373355705,
+      "id_cosine": 0.7723888176679611,
+      "ssim_rgb": {
+        "mean": 0.8127712039351463,
+        "std": 0.045631707844510365,
+        "median": 0.8197332620620728,
+        "p05": 0.7307864308357239,
+        "p95": 0.8726642310619355
+      }
+    },
+    {
+      "channel": 20,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_20/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.09134679440589982,
+      "mean_psnr_db": 18.686888771849112,
+      "id_cosine": 0.4708263079077005,
+      "ssim_rgb": {
+        "mean": 0.7194864390194416,
+        "std": 0.058540186651470615,
+        "median": 0.7258321642875671,
+        "p05": 0.6137626707553864,
+        "p95": 0.8021445959806442
+      }
+    },
+    {
+      "channel": 21,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_21/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07485548329205477,
+      "mean_psnr_db": 20.542316619350494,
+      "id_cosine": 0.7564780368208885,
+      "ssim_rgb": {
+        "mean": 0.8002999467551708,
+        "std": 0.04742211456804784,
+        "median": 0.8058904409408569,
+        "p05": 0.7164133876562119,
+        "p95": 0.8639720141887665
+      }
+    },
+    {
+      "channel": 22,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_22/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.09466420127021553,
+      "mean_psnr_db": 18.35094187652116,
+      "id_cosine": 0.5463882698118687,
+      "ssim_rgb": {
+        "mean": 0.7074151539802551,
+        "std": 0.06090493155233673,
+        "median": 0.7143149375915527,
+        "p05": 0.5942511200904846,
+        "p95": 0.7970746219158172
+      }
+    },
+    {
+      "channel": 23,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_23/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07799201434368004,
+      "mean_psnr_db": 20.16160687123191,
+      "id_cosine": 0.7209535141289234,
+      "ssim_rgb": {
+        "mean": 0.7843722265958786,
+        "std": 0.05048192285256231,
+        "median": 0.791116863489151,
+        "p05": 0.694687408208847,
+        "p95": 0.8515768051147461
+      }
+    },
+    {
+      "channel": 24,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_24/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.04622387869617518,
+      "mean_psnr_db": 25.070607799218568,
+      "id_cosine": 0.9231956119537353,
+      "ssim_rgb": {
+        "mean": 0.9010907606482506,
+        "std": 0.030033092423538705,
+        "median": 0.9063723981380463,
+        "p05": 0.84692662358284,
+        "p95": 0.9378331780433655
+      }
+    },
+    {
+      "channel": 25,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_25/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06084563856441084,
+      "mean_psnr_db": 22.54427818042121,
+      "id_cosine": 0.8230458923578262,
+      "ssim_rgb": {
+        "mean": 0.8463168320655823,
+        "std": 0.04105435159144283,
+        "median": 0.8519170880317688,
+        "p05": 0.7728783488273621,
+        "p95": 0.8983920484781265
+      }
+    },
+    {
+      "channel": 26,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_26/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07128087106915856,
+      "mean_psnr_db": 20.979975986817387,
+      "id_cosine": 0.7520373589992523,
+      "ssim_rgb": {
+        "mean": 0.8139047429859638,
+        "std": 0.04528575622023571,
+        "median": 0.8195574879646301,
+        "p05": 0.7346713900566101,
+        "p95": 0.872497147321701
+      }
+    },
+    {
+      "channel": 27,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_27/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06073534864417299,
+      "mean_psnr_db": 22.56834566531834,
+      "id_cosine": 0.8187642021179199,
+      "ssim_rgb": {
+        "mean": 0.8448307710886002,
+        "std": 0.04100670665463945,
+        "median": 0.8507308661937714,
+        "p05": 0.7754900544881821,
+        "p95": 0.8962979406118393
+      }
+    },
+    {
+      "channel": 28,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_28/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.0779991173295472,
+      "mean_psnr_db": 20.14231189217996,
+      "id_cosine": 0.5415084098726511,
+      "ssim_rgb": {
+        "mean": 0.7664436819851399,
+        "std": 0.05296458339270531,
+        "median": 0.7731769979000092,
+        "p05": 0.6724986791610718,
+        "p95": 0.8376286774873734
+      }
+    },
+    {
+      "channel": 29,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_29/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06259677922559052,
+      "mean_psnr_db": 22.28157978018384,
+      "id_cosine": 0.8009793465137481,
+      "ssim_rgb": {
+        "mean": 0.8338820288777351,
+        "std": 0.043522682339713854,
+        "median": 0.8402375876903534,
+        "p05": 0.7554638743400574,
+        "p95": 0.8902221739292144
+      }
+    },
+    {
+      "channel": 30,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_30/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08120901431265717,
+      "mean_psnr_db": 19.773556562687467,
+      "id_cosine": 0.628663870126009,
+      "ssim_rgb": {
+        "mean": 0.7561387809813023,
+        "std": 0.054886791834589894,
+        "median": 0.7615777552127838,
+        "p05": 0.6592361867427826,
+        "p95": 0.8338052541017532
+      }
+    },
+    {
+      "channel": 31,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_31/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06506993585813325,
+      "mean_psnr_db": 21.94067316283157,
+      "id_cosine": 0.7777439027428626,
+      "ssim_rgb": {
+        "mean": 0.8231720810830593,
+        "std": 0.046149566393610446,
+        "median": 0.8314626216888428,
+        "p05": 0.7361854165792465,
+        "p95": 0.8839161485433579
+      }
+    },
+    {
+      "channel": 32,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_32/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06913510568221702,
+      "mean_psnr_db": 21.03197893444964,
+      "id_cosine": 0.6705242717266082,
+      "ssim_rgb": {
+        "mean": 0.8091344619393349,
+        "std": 0.042105060160918334,
+        "median": 0.8139390051364899,
+        "p05": 0.7336537510156631,
+        "p95": 0.8676667660474777
+      }
+    },
+    {
+      "channel": 33,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_33/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08163294305625216,
+      "mean_psnr_db": 19.607530327564227,
+      "id_cosine": 0.5752486258596182,
+      "ssim_rgb": {
+        "mean": 0.7497066104412079,
+        "std": 0.05267361076639827,
+        "median": 0.7550871074199677,
+        "p05": 0.6561887294054032,
+        "p95": 0.8262405037879944
+      }
+    },
+    {
+      "channel": 34,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_34/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.0924686867121558,
+      "mean_psnr_db": 18.479237397881807,
+      "id_cosine": 0.49232903046905996,
+      "ssim_rgb": {
+        "mean": 0.7074148770272731,
+        "std": 0.05716984894199796,
+        "median": 0.7098658680915833,
+        "p05": 0.6108043134212494,
+        "p95": 0.7921665489673614
+      }
+    },
+    {
+      "channel": 35,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_35/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08326513785600494,
+      "mean_psnr_db": 19.473150060997337,
+      "id_cosine": 0.5702513490766287,
+      "ssim_rgb": {
+        "mean": 0.7447875546813011,
+        "std": 0.05292546862825767,
+        "median": 0.7496335208415985,
+        "p05": 0.6491264849901199,
+        "p95": 0.823066258430481
+      }
+    },
+    {
+      "channel": 36,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_36/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.10892357087773064,
+      "mean_psnr_db": 17.248517045838152,
+      "id_cosine": 0.35864141779579223,
+      "ssim_rgb": {
+        "mean": 0.6516614212393761,
+        "std": 0.0654892297979853,
+        "median": 0.657189130783081,
+        "p05": 0.5393566578626633,
+        "p95": 0.7474520981311797
+      }
+    },
+    {
+      "channel": 37,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_37/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07917531903386339,
+      "mean_psnr_db": 19.790679761039623,
+      "id_cosine": 0.5608347800374031,
+      "ssim_rgb": {
+        "mean": 0.7418739097118378,
+        "std": 0.05224154991116528,
+        "median": 0.7458286285400391,
+        "p05": 0.6478490650653839,
+        "p95": 0.8183525770902633
+      }
+    },
+    {
+      "channel": 38,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_38/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.09579888953709956,
+      "mean_psnr_db": 18.115162892522996,
+      "id_cosine": 0.38830231080949307,
+      "ssim_rgb": {
+        "mean": 0.6532701039910317,
+        "std": 0.06559557617728302,
+        "median": 0.6577204167842865,
+        "p05": 0.5362050980329514,
+        "p95": 0.7497473746538162
+      }
+    },
+    {
+      "channel": 39,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_39/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08508269631860027,
+      "mean_psnr_db": 19.198568234654758,
+      "id_cosine": 0.5145593340992928,
+      "ssim_rgb": {
+        "mean": 0.7112945035398006,
+        "std": 0.05707488812101559,
+        "median": 0.7181388139724731,
+        "p05": 0.6086056768894196,
+        "p95": 0.7906215906143188
+      }
+    },
+    {
+      "channel": 40,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_40/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.046776986721412867,
+      "mean_psnr_db": 24.868941321708213,
+      "id_cosine": 0.9156761278510094,
+      "ssim_rgb": {
+        "mean": 0.894930134832859,
+        "std": 0.03161607608332564,
+        "median": 0.900934487581253,
+        "p05": 0.8376471698284149,
+        "p95": 0.9340476095676422
+      }
+    },
+    {
+      "channel": 41,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_41/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06103568912817713,
+      "mean_psnr_db": 22.475358566086033,
+      "id_cosine": 0.8103660265803337,
+      "ssim_rgb": {
+        "mean": 0.8403877878785133,
+        "std": 0.04239446838533926,
+        "median": 0.8455989360809326,
+        "p05": 0.7643541038036347,
+        "p95": 0.8948942422866821
+      }
+    },
+    {
+      "channel": 42,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_42/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07241826921007452,
+      "mean_psnr_db": 20.81633492408013,
+      "id_cosine": 0.7434926509857178,
+      "ssim_rgb": {
+        "mean": 0.8062595720887185,
+        "std": 0.046753220971410075,
+        "median": 0.8110730648040771,
+        "p05": 0.7240912616252899,
+        "p95": 0.8680248647928238
+      }
+    },
+    {
+      "channel": 43,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_43/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06240186604869878,
+      "mean_psnr_db": 22.338277075946877,
+      "id_cosine": 0.8037948489189148,
+      "ssim_rgb": {
+        "mean": 0.8368574069738388,
+        "std": 0.04374427416568064,
+        "median": 0.843801885843277,
+        "p05": 0.7590062081813812,
+        "p95": 0.8928297370672226
+      }
+    },
+    {
+      "channel": 44,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_44/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07707070284060182,
+      "mean_psnr_db": 20.177419997242584,
+      "id_cosine": 0.5304259975701571,
+      "ssim_rgb": {
+        "mean": 0.7598493548631668,
+        "std": 0.05246976816520795,
+        "median": 0.7650062143802643,
+        "p05": 0.6609098762273788,
+        "p95": 0.8342852234840393
+      }
+    },
+    {
+      "channel": 45,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_45/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06372217264316095,
+      "mean_psnr_db": 22.117909672474788,
+      "id_cosine": 0.7949154163002968,
+      "ssim_rgb": {
+        "mean": 0.8279288628697395,
+        "std": 0.044817619470756395,
+        "median": 0.8340545892715454,
+        "p05": 0.745617026090622,
+        "p95": 0.886996579170227
+      }
+    },
+    {
+      "channel": 46,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_46/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08175789903697944,
+      "mean_psnr_db": 19.77337899770394,
+      "id_cosine": 0.627598865866661,
+      "ssim_rgb": {
+        "mean": 0.753211818754673,
+        "std": 0.056775436922415,
+        "median": 0.7584342062473297,
+        "p05": 0.6472460806369782,
+        "p95": 0.833530843257904
+      }
+    },
+    {
+      "channel": 47,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_47/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06548775669951451,
+      "mean_psnr_db": 21.904127352455586,
+      "id_cosine": 0.7715645278692246,
+      "ssim_rgb": {
+        "mean": 0.822274693608284,
+        "std": 0.046420648548986004,
+        "median": 0.8297959864139557,
+        "p05": 0.7365817934274673,
+        "p95": 0.8825460731983185
+      }
+    },
+    {
+      "channel": 48,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_48/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.0700813990783906,
+      "mean_psnr_db": 21.06103743687881,
+      "id_cosine": 0.7808386999368667,
+      "ssim_rgb": {
+        "mean": 0.8161866168379783,
+        "std": 0.042709734846909174,
+        "median": 0.8218249976634979,
+        "p05": 0.7382896542549133,
+        "p95": 0.8745122015476227
+      }
+    },
+    {
+      "channel": 49,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_49/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.0823436773656392,
+      "mean_psnr_db": 19.601735584059046,
+      "id_cosine": 0.6571988740563393,
+      "ssim_rgb": {
+        "mean": 0.7539526678025722,
+        "std": 0.05447254758468244,
+        "median": 0.7578871250152588,
+        "p05": 0.6601735770702362,
+        "p95": 0.8323178857564926
+      }
+    },
+    {
+      "channel": 50,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_50/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.09376923221235677,
+      "mean_psnr_db": 18.421955978781376,
+      "id_cosine": 0.5635109713077545,
+      "ssim_rgb": {
+        "mean": 0.7077506327331066,
+        "std": 0.060158206660069324,
+        "median": 0.7127931118011475,
+        "p05": 0.603579369187355,
+        "p95": 0.7957078397274017
+      }
+    },
+    {
+      "channel": 51,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_51/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08304763390225292,
+      "mean_psnr_db": 19.548125279700123,
+      "id_cosine": 0.6507119066417217,
+      "ssim_rgb": {
+        "mean": 0.7497054476737977,
+        "std": 0.05506515151063453,
+        "median": 0.754673957824707,
+        "p05": 0.6488089740276337,
+        "p95": 0.8296750903129577
+      }
+    },
+    {
+      "channel": 52,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_52/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.09479965131378854,
+      "mean_psnr_db": 18.192796663710446,
+      "id_cosine": 0.37976297666877507,
+      "ssim_rgb": {
+        "mean": 0.6573089063763619,
+        "std": 0.06758224970742951,
+        "median": 0.6618865430355072,
+        "p05": 0.537548279762268,
+        "p95": 0.7608383446931839
+      }
+    },
+    {
+      "channel": 53,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_53/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08400048012848306,
+      "mean_psnr_db": 19.42926582834543,
+      "id_cosine": 0.6427623595893383,
+      "ssim_rgb": {
+        "mean": 0.7445233654379845,
+        "std": 0.05467980524523111,
+        "median": 0.7482372224330902,
+        "p05": 0.6491607785224914,
+        "p95": 0.8242239236831664
+      }
+    },
+    {
+      "channel": 54,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_54/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.10006078758368864,
+      "mean_psnr_db": 17.821116596991697,
+      "id_cosine": 0.4206728375181556,
+      "ssim_rgb": {
+        "mean": 0.6469994283020496,
+        "std": 0.07068733874371327,
+        "median": 0.6526812016963959,
+        "p05": 0.5302790015935898,
+        "p95": 0.7525357365608215
+      }
+    },
+    {
+      "channel": 55,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_55/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08566645667921485,
+      "mean_psnr_db": 19.240481010976954,
+      "id_cosine": 0.5874215050041676,
+      "ssim_rgb": {
+        "mean": 0.7226365016400814,
+        "std": 0.05840752558678397,
+        "median": 0.7258606255054474,
+        "p05": 0.6196614772081375,
+        "p95": 0.8070639550685883
+      }
+    },
+    {
+      "channel": 56,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_56/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.0496882055163705,
+      "mean_psnr_db": 24.372214830276697,
+      "id_cosine": 0.8928345553278924,
+      "ssim_rgb": {
+        "mean": 0.8822703948020935,
+        "std": 0.033935456496211894,
+        "median": 0.8880087733268738,
+        "p05": 0.8145969182252883,
+        "p95": 0.9251368671655655
+      }
+    },
+    {
+      "channel": 57,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_57/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06468234806389271,
+      "mean_psnr_db": 21.97839666747117,
+      "id_cosine": 0.7849012912511826,
+      "ssim_rgb": {
+        "mean": 0.8265471696555614,
+        "std": 0.04528764523347179,
+        "median": 0.8332126140594482,
+        "p05": 0.7424162983894348,
+        "p95": 0.8840607523918151
+      }
+    },
+    {
+      "channel": 58,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_58/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07565530167865808,
+      "mean_psnr_db": 20.44827855023045,
+      "id_cosine": 0.7065168909132481,
+      "ssim_rgb": {
+        "mean": 0.7883280402123928,
+        "std": 0.04951226761783931,
+        "median": 0.7942871451377869,
+        "p05": 0.699038103222847,
+        "p95": 0.8553479880094528
+      }
+    },
+    {
+      "channel": 59,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_59/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06496780095649425,
+      "mean_psnr_db": 21.942500124417325,
+      "id_cosine": 0.7801878402233123,
+      "ssim_rgb": {
+        "mean": 0.8247354680299759,
+        "std": 0.04602315402392264,
+        "median": 0.8315064907073975,
+        "p05": 0.7414921164512634,
+        "p95": 0.8852236211299895
+      }
+    },
+    {
+      "channel": 60,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_60/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.07872594199346483,
+      "mean_psnr_db": 19.897014641215907,
+      "id_cosine": 0.49990604431182145,
+      "ssim_rgb": {
+        "mean": 0.7346055363118649,
+        "std": 0.05652577753993423,
+        "median": 0.7398174703121185,
+        "p05": 0.6293747633695602,
+        "p95": 0.8157943755388259
+      }
+    },
+    {
+      "channel": 61,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_61/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06624665951186975,
+      "mean_psnr_db": 21.80809010300361,
+      "id_cosine": 0.7666818251609803,
+      "ssim_rgb": {
+        "mean": 0.8172777993679047,
+        "std": 0.04706562103647947,
+        "median": 0.8253233134746552,
+        "p05": 0.7326641321182251,
+        "p95": 0.8792937636375427
+      }
+    },
+    {
+      "channel": 62,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_62/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.08325497496881218,
+      "mean_psnr_db": 19.541967575478235,
+      "id_cosine": 0.5763274060487747,
+      "ssim_rgb": {
+        "mean": 0.7342111275792121,
+        "std": 0.058928874396850045,
+        "median": 0.7387454509735107,
+        "p05": 0.6275600552558899,
+        "p95": 0.8209140032529831
+      }
+    },
+    {
+      "channel": 63,
+      "checkpoint": "/private/codes/exp/face_workspace/zz/TFace/recognition/logs/unet_reconstruction/casia_frequency_sweep_20ep_ddp8/freq_63/checkpoints/Backbone_Epoch_20_checkpoint.pth",
+      "num_images": 1000,
+      "mae_rgb_01": 0.06736459397650275,
+      "mean_psnr_db": 21.641948111842606,
+      "id_cosine": 0.7495577217340469,
+      "ssim_rgb": {
+        "mean": 0.812073915719986,
+        "std": 0.04801963907082978,
+        "median": 0.8203772306442261,
+        "p05": 0.7240760058164597,
+        "p95": 0.8754775524139404
+      }
+    }
+  ],
+  "failures": {}
+}

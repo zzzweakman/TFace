@@ -1,0 +1,89 @@
+SEED: 1337
+DATA_ROOT: /private/codes/exp/face_workspace/yc/data_preserve/MS1Mv2/images
+INDEX_ROOT: /private/codes/exp/face_workspace/yc/data_preserve/MS1Mv2/elasticface_embeddings/default
+LANDMARK_CACHE_DIR: /private/codes/exp/face_workspace/zz/TFace/recognition/logs/channel_selection/ms1mv2_channel36_landmark_distill_54_20ep_run2/landmarks
+DATASET_MODE: image_list
+IMAGE_EXTENSIONS:
+- .jpg
+- .jpeg
+- .png
+DATASETS:
+- name: image_index
+  batch_size: 128
+  weight: 1.0
+  scale: 64
+  margin: 0.4
+BACKBONE_RESUME: ''
+HEAD_RESUME: ''
+META_RESUME: ''
+INPUT_SIZE:
+- 112
+- 112
+BACKBONE_NAME: IR_50
+INPUT_CHANNELS: 3
+PREPROCESS_MODE: high_freq
+FREQ_LOW_CHANNELS:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 8
+- 9
+- 16
+- 24
+DCT_SAMPLING_RATIO: 8
+EMBEDDING_SIZE: 512
+MODEL_ROOT: /private/codes/exp/face_workspace/zz/TFace/recognition/logs/channel_selection/ms1mv2_channel36_spatial_landmark_distill_54_20ep_run2/ckpt
+LOG_ROOT: /private/codes/exp/face_workspace/zz/TFace/recognition/logs/channel_selection/ms1mv2_channel36_spatial_landmark_distill_54_20ep_run2/tensorboard
+DIST_FC: true
+HEAD_NAME: ArcFace
+LOSS_NAME: DistCrossEntropy
+RGB_MEAN:
+- 0.5
+- 0.5
+- 0.5
+RGB_STD:
+- 0.5
+- 0.5
+- 0.5
+LRS:
+- 0.05
+- 0.005
+- 0.0005
+- 5.0e-05
+- 5.0e-06
+WARMUP_STEP: -1
+STAGES:
+- 8
+- 12
+- 15
+- 18
+START_EPOCH: 0
+NUM_EPOCH: 20
+SAVE_EPOCHS:
+- 1
+- 5
+- 10
+- 15
+- 18
+- 20
+WEIGHT_DECAY: 0.0005
+MOMENTUM: 0.9
+WORLD_SIZE: 1
+RANK: 0
+LOCAL_RANK: 0
+DIST_BACKEND: nccl
+DIST_URL: env://
+NUM_WORKERS: 8
+AMP: false
+FREQ_KEEP_CHANNELS:
+- 36
+DISTILL_TEACHER_BACKBONE: IR_50
+DISTILL_TEACHER_CHECKPOINT: ckpt_MS1Mv2_highfreq/Backbone_Epoch_20_checkpoint.pth
+DISTILL_INIT_STUDENT_FROM_TEACHER: true
+DISTILL_FEATURE_WEIGHT: 5.0
+DISTILL_INTERMEDIATE_WEIGHT: 2.0
+LANDMARK_POINT_KEEP: 0.85
+LANDMARK_CONDITION_KEEP: 0.9
